@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragment/head}"></head>
+<body>
+<header class="header_area" id="header">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <form class="col-12 h-100">
+                <nav class="h-100 navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="/"><img src="/images/core-img/logo.png" alt></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+
+                    <form class="collapse navbar-collapse" id="dorneNav">
+                        <ul class="navbar-nav mr-auto" id="dorneMenu">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/destinations">Destinations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/events">Events</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+
+                        <div class="dorne-signin-btn">
+                            <a class="dorne-signin-btn" style="color: white" sec:authorize="isAuthenticated()">
+                                Welcome,
+                                <th:block class="nav-link" sec:authentication="name"></th:block>
+                            </a>
+                            <a class="dorne-signin-btn" style="color: white" sec:authorize="!isAuthenticated()">
+                                Welcome, Anonymous!
+                            </a>
+                        </div>
+
+                        <div class="dorne-signin-btn" sec:authorize="!isAuthenticated()">
+                            <a href="/users/login">Login</a>
+                        </div>
+
+                        <div class="dorne-signin-btn" sec:authorize="!isAuthenticated()">
+                            <a href="/users/register">Register</a>
+                        </div>
+
+                        <div class="dorne-signin-btn" sec:authorize="isAuthenticated()">
+                            <a href="/users/logout">Logout</a>
+                        </div>
+
+                        <div class="dorne-signin-btn" sec:authorize="isAuthenticated()">
+                            <a href="/listings/add"><i class="fa fa-plus" aria-hidden="true"></i> Add listings</a>
+                        </div>
+                    </form>
+                </nav>
+            </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="dorne-search-form d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="search-close-btn" id="closeBtn">
+                    <i class="pe-7s-close-circle" aria-hidden="true"></i>
+                </div>
+                <form action="#" method="get">
+                    <input type="search" name="caviarSearch" id="search" placeholder="Search Your Desire Destinations or Events">
+                    <input type="submit" class="d-none" value="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

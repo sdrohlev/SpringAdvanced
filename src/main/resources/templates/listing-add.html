@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragment/head}"></head>
+<body>
+
+<header th:replace="~{fragment/header}"></header>
+
+<section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(/images/bg-img/hero-1.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+
+            <form class="mx-auto w-25 bg-blur rounded" th:object="${listingAddBindingModel}" th:method="post" th:action="@{/listings/add}">
+
+                <div th:if="${listingExist}" class="text-danger">Listing with this name already exists!</div>
+                <div class="form-group">
+                    <div class="label-holder textCol d-flex justify-content-center">
+                        <label for="name" class="h4 mb-2 text-white">Name</label>
+                    </div>
+                    <input th:field="*{name}" th:errorclass="bg-danger" type="text" class="form-control" id="name" name="name"/>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Name error message</small>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-holder text-white textCol d-flex justify-content-center">
+                        <label for="rating" class="h4 mb-2">Rating</label>
+                    </div>
+                    <input th:field="*{rating}" th:errorclass="bg-danger" type="text" class="form-control" id="rating" name="rating"/>
+                    <small th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}" class="text-danger">Rating error message</small>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-holder text-white textCol d-flex justify-content-center">
+                        <label for="imgUrl" class="h4 mb-2">Image URL</label>
+                    </div>
+                    <input th:field="*{imgUrl}" th:errorclass="bg-danger" type="url" class="form-control" id="imgUrl" name="imgUrl"/>
+                    <small th:if="${#fields.hasErrors('imgUrl')}" th:errors="*{imgUrl}" class="text-danger">Image link error message</small>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-holder text-white textCol d-flex justify-content-center">
+                        <label for="destination" class="h4 mb-2">Destination</label>
+                    </div>
+                    <input th:field="*{destination}" th:errorclass="bg-danger" type="text" class="form-control" id="destination" name="destination"/>
+                    <small th:if="${#fields.hasErrors('destination')}" th:errors="*{destination}" class="text-danger">Password error message</small>
+                </div>
+
+                <div class="form-group">
+                    <div class="text-white label-holder d-flex justify-content-center">
+                        <label for="category" class="h4 mb-2">Category</label>
+                    </div>
+                    <select th:field="*{category}" th:errorclass="bg-danger" class="browser-default custom-select" id="category" name="category">
+                        <option value="">Select category</option>
+                        <option th:each="c : ${T(com.example.dorne.model.entity.enums.CategoryNameEnum).values()}"
+                                th:text="${c}" th:value="${c}">Category</option>
+                    </select>
+
+                    <small th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger">Category error message</small>
+                </div>
+
+                <div class="button-holder d-flex justify-content-center">
+                    <button type="submit" class="btn btn-warning  mb-3" value="Register">Add Listing</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+
+    <div class="hero-social-btn">
+        <div class="social-title d-flex align-items-center">
+            <h6>Follow us on Social Media</h6>
+            <span></span>
+        </div>
+        <div class="social-btns">
+            <a href="https://www.linkedin.com/"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+            <a href="https://www.twitter.com/"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+            <a href="https://www.fa-facebook.com/"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+        </div>
+    </div>
+
+</section>
+
+<footer th:replace="~{fragment/footer}"></footer>
+
+</body>
+</html>

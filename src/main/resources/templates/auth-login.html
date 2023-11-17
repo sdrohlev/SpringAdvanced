@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragment/head}"></head>
+<body>
+
+<header th:replace="~{fragment/header}"></header>
+
+<section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(/images/bg-img/hero-1.jpg);">
+<div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center">
+
+        <form class="mx-auto w-25" th:action="@{/users/login}" th:method="post">
+
+        <div class="form-group">
+            <div class="label-holder text-white d-flex justify-content-center">
+                <label for="email" class="h3 mb-2">Email</label>
+            </div>
+            <input  type="text" class="form-control" id="email" name="email"/>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white d-flex justify-content-center">
+                <label for="password" class="h3 mb-2">Password</label>
+            </div>
+            <input  type="password" class="form-control" id="password" name="password"/>
+        </div>
+
+        <p th:if="${bad_credentials}" class="errors alert alert-danger">
+                Invalid username or password.
+        </p>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3">Login</button>
+        </div>
+        </form>
+
+    </div>
+</div>
+
+
+    <div class="hero-social-btn">
+        <div class="social-title d-flex align-items-center">
+            <h6>Follow us on Social Media</h6>
+            <span></span>
+        </div>
+        <div class="social-btns">
+            <a href="https://www.linkedin.com/"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+            <a href="https://www.twitter.com/"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+            <a href="https://www.fa-facebook.com/"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+        </div>
+    </div>
+
+</section>
+
+<footer th:replace="~{fragment/footer}"></footer>
+
+</body>
+</html>

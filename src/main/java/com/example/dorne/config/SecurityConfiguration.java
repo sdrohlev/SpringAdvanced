@@ -1,7 +1,9 @@
 package com.example.dorne.config;
 
+import com.example.dorne.model.entity.enums.UserRoleEnum;
 import com.example.dorne.repository.UserRepository;
 import com.example.dorne.service.impl.AppUserDetailsService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +17,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityConfiguration {
 
+    private final String rememberMeKey;
+
+    public SecurityConfiguration(@Value("${remember.me.key}")
+                                 String rememberMe) {
+        this.rememberMeKey = rememberMe;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
@@ -23,6 +32,7 @@ public class SecurityConfiguration {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/", "/users/login", "/users/register", "/users/login-error","/listings/hotels",
                                 "/destinations","/events").permitAll()
+                        .requestMatchers("/events").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
 
         ).formLogin(
@@ -41,7 +51,14 @@ public class SecurityConfiguration {
                             .logoutSuccessUrl("/")
                             .invalidateHttpSession(true);
                 }
-        ).csrf(AbstractHttpConfigurer::disable);
+        ).rememberMe(
+                rememberMe -> {
+                    rememberMe
+                            .key(rememberMeKey)
+                            .rememberMeParameter("rememberme")
+                            .rememberMeCookieName("rememberme");
+                    }
+                ).csrf(AbstractHttpConfigurer::disable);
 
         return httpSecurity.build();
     }

@@ -2,13 +2,14 @@ package com.example.dorne.service.impl;
 
 
 import com.example.dorne.model.entity.UserEntity;
+import com.example.dorne.model.entity.enums.UserRoleEnum;
 import com.example.dorne.repository.UserRepository;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import java.util.List;
 
 public class AppUserDetailsService implements UserDetailsService {
 
@@ -22,14 +23,21 @@ public class AppUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository
                 .findByEmail(email)
-                .map(this::map)
+                .map(AppUserDetailsService::map)
                 .orElseThrow(() -> new UsernameNotFoundException("User " + email + " not found!"));
     }
 
-    private UserDetails map(UserEntity userEntity) {
-        return User.withUsername(userEntity.getEmail())
+    private static UserDetails map(UserEntity userEntity) {
+        return User
+                .withUsername(userEntity.getEmail())
                 .password(userEntity.getPassword())
-                .authorities(List.of()) //TODO - add roles
+                .authorities(AppUserDetailsService.map(userEntity.getRole())) //TODO - add roles
                 .build();
+
     }
+
+    private static GrantedAuthority map(UserRoleEnum userRoleEnum) {
+        return new SimpleGrantedAuthority("ROLE_" + userRoleEnum.name());
+    }
+
 }

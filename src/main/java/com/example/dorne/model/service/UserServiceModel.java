@@ -1,10 +1,14 @@
 package com.example.dorne.model.service;
 
+import com.example.dorne.model.entity.enums.UserRoleEnum;
+
 public class UserServiceModel {
 
     private String username;
     private String password;
     private String email;
+    private UserRoleEnum role;
+
 
     public UserServiceModel() {
     }
@@ -31,5 +35,13 @@ public class UserServiceModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public UserRoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoleEnum role) {
+        this.role = role;
     }
 }

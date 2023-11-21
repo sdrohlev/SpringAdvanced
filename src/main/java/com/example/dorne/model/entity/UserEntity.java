@@ -1,9 +1,11 @@
 package com.example.dorne.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.example.dorne.model.entity.enums.UserRoleEnum;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -12,6 +14,7 @@ public class UserEntity extends BaseEntity{
     private String username;
     private String password;
     private String email;
+    private UserRoleEnum role;
 
     //private List<Event>;
     //private List<Place>;
@@ -20,10 +23,11 @@ public class UserEntity extends BaseEntity{
     public UserEntity() {
     }
 
-    public UserEntity(String username, String password, String email) {
+    public UserEntity(String username, String password, String email, UserRoleEnum userRoleEnum) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = userRoleEnum;
     }
 
     @Column(name = "username", unique = true, nullable = false)
@@ -52,5 +56,14 @@ public class UserEntity extends BaseEntity{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Enumerated(value = EnumType.STRING)
+    public UserRoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoleEnum role) {
+        this.role = role;
     }
 }

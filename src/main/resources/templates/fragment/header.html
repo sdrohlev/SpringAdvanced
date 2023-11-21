@@ -38,6 +38,17 @@
                             </a>
                         </div>
 
+                        <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                            <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                            </a>
+                            <div class="dorne-signin-btn" >
+                                <a class="dropdown-item" href="/events">Add Event</a>
+                                <a class="dropdown-item" href="/">Change user roles</a>
+                            </div>
+                        </li>
+
                         <div class="dorne-signin-btn" sec:authorize="!isAuthenticated()">
                             <a href="/users/login">Login</a>
                         </div>

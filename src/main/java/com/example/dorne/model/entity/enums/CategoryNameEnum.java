@@ -4,6 +4,6 @@ public enum CategoryNameEnum {
     HOTEL,
     RESTAURANT,
     SHOPPING,
-    BEAUTYAndSPA,
+    FITNESS,
     CINEMA
 }

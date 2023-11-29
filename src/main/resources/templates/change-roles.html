@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragment/head}"></head>
+<body>
+
+
+<div id="preloader">
+    <div class="dorne-load"></div>
+</div>
+
+
+<header th:replace="~{fragment/header}"></header>
+
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(/images/bg-img/hero-3.jpg)"></div>
+
+<section class="dorne-listing-destinations-area section-padding-100-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading dark text-center">
+                    <span></span>
+                    <h4>ADMIN PANEL</h4>
+                    <p>Change users roles</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-search-form">
+
+            <div class="tab-content" id="nav-tabContent">
+                <div th:object="${userRoleBindingModel}" class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
+                    <h6>Choose a user to change role</h6>
+                    <div th:if="${equalRoles}" class="text-danger">User already has this ROLE!</div>
+                    <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Email error message</small><br>
+                    <small th:if="${#fields.hasErrors('newRole')}" th:errors="*{newRole}" class="text-danger">New role error message</small>
+
+                <form th:object="${userRoleBindingModel}"
+                          th:action="@{/users/change-roles}" th:method="POST">
+                        <select class="custom-select" id="email" name="email">
+                            <option value="">Select username</option>
+                            <option
+                                    th:each="u : ${users}"
+                                    th:text="${u.email}" th:value="${u.email}">Email</option>
+                        </select>
+                        <select class="custom-select" id="newRole" name="newRole">
+                            <option value="">Select new role</option>
+                            <option
+                                    th:each="c : ${T(com.example.dorne.model.entity.enums.UserRoleEnum).values()}"
+                                    th:text="${c}" th:value="${c}">New role</option>
+                        </select>
+                        <button type="submit" class="btn dorne-btn">Change Role</button>
+                        </span>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+                    <h6>What are you looking for?</h6>
+                    <form action="#" method="get">
+                        <select class="custom-select">
+                            <option selected>Your Destinations</option>
+                            <option value="1">New York</option>
+                            <option value="2">Latvia</option>
+                            <option value="3">Dhaka</option>
+                            <option value="4">Melbourne</option>
+                            <option value="5">London</option>
+                        </select>
+                        <select class="custom-select">
+                            <option selected>All Catagories</option>
+                            <option value="1">Catagories 1</option>
+                            <option value="2">Catagories 2</option>
+                            <option value="3">Catagories 3</option>
+                        </select>
+                        <select class="custom-select">
+                            <option selected>Price Range</option>
+                            <option value="1">$100 - $499</option>
+                            <option value="2">$500 - $999</option>
+                            <option value="3">$1000 - $4999</option>
+                        </select>
+                        <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<footer th:replace="~{fragment/footer}"></footer>
+
+</body>
+</html>

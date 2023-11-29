@@ -2,9 +2,12 @@ package com.example.dorne.service.impl;
 
 import com.example.dorne.model.entity.Destination;
 import com.example.dorne.model.entity.Listing;
+import com.example.dorne.model.service.DestinationServiceModel;
 import com.example.dorne.repository.DestinationRepository;
 import com.example.dorne.service.DestinationService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class DestinationServiceImpl implements DestinationService {
@@ -17,9 +20,9 @@ public class DestinationServiceImpl implements DestinationService {
 
 
     @Override
-    public void addDestination(String destinationName) {
-        if (this.destinationRepository.findByName(destinationName).isEmpty()) {
-            Destination destination = new Destination(destinationName);
+    public void addDestination(DestinationServiceModel destinationServiceModel) {
+        if (this.destinationRepository.findByName(destinationServiceModel.getName()).isEmpty()) {
+            Destination destination = new Destination(destinationServiceModel.getName(), destinationServiceModel.getImageUrl());
             this.destinationRepository.save(destination);
         }
     }
@@ -32,5 +35,15 @@ public class DestinationServiceImpl implements DestinationService {
     @Override
     public void addListingToDestination(Listing listing, String destinationName) {
         this.destinationRepository.findByName(destinationName).get().getListingsByDest().add(listing);
+    }
+
+    @Override
+    public List<Destination> findAll() {
+        return this.destinationRepository.findAll();
+    }
+
+    @Override
+    public boolean isContains(DestinationServiceModel destinationServiceModel) {
+        return this.destinationRepository.findByName(destinationServiceModel.getName()).isPresent();
     }
 }

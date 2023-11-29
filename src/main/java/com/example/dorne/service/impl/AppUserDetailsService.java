@@ -31,7 +31,7 @@ public class AppUserDetailsService implements UserDetailsService {
         return User
                 .withUsername(userEntity.getEmail())
                 .password(userEntity.getPassword())
-                .authorities(AppUserDetailsService.map(userEntity.getRole())) //TODO - add roles
+                .authorities(AppUserDetailsService.map(userEntity.getRole()))
                 .build();
 
     }

@@ -10,9 +10,9 @@
     <div class="container h-100">
         <div class="row h-100 align-items-center justify-content-center">
 
-            <form class="mx-auto w-25 bg-blur rounded" th:object="${listingAddBindingModel}" th:method="post" th:action="@{/listings/add}">
+            <form class="mx-auto w-25 bg-blur rounded" th:object="${eventAddBindingModel}" th:method="post" th:action="@{/events/add}">
 
-                <div th:if="${listingExist}" class="text-danger">Listing with this name already exists!</div>
+                <div th:if="${eventExist}" class="text-danger">Event with this name already exists!</div>
                 <div class="form-group">
                     <div class="label-holder textCol d-flex justify-content-center">
                         <label for="name" class="h4 mb-2 text-white">Name</label>
@@ -23,10 +23,18 @@
 
                 <div class="form-group">
                     <div class="label-holder text-white textCol d-flex justify-content-center">
-                        <label for="rating" class="h4 mb-2">Rating</label>
+                        <label for="description" class="h4 mb-2">Description</label>
                     </div>
-                    <input th:field="*{rating}" th:errorclass="bg-danger" type="text" class="form-control" id="rating" name="rating"/>
-                    <small th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}" class="text-danger">Rating error message</small>
+                    <input th:field="*{description}" th:errorclass="bg-danger" type="text" class="form-control" id="description" name="description"/>
+                    <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">Description error message</small>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-holder text-white textCol d-flex justify-content-center">
+                        <label for="dayAndTime" class="h4 mb-2">Date and Time</label>
+                    </div>
+                    <input th:field="*{dayAndTime}" th:errorclass="bg-danger" type="datetime-local" class="form-control" id="dayAndTime" name="dayAndTime"/>
+                    <small th:if="${#fields.hasErrors('dayAndTime')}" th:errors="*{dayAndTime}" class="text-danger">DayAndTime link error message</small>
                 </div>
 
                 <div class="form-group">
@@ -50,21 +58,8 @@
                     <small th:if="${#fields.hasErrors('destination')}" th:errors="*{destination}" class="text-danger">Destination error message</small>
                 </div>
 
-                <div class="form-group">
-                    <div class="text-white label-holder d-flex justify-content-center">
-                        <label for="category" class="h4 mb-2">Category</label>
-                    </div>
-                    <select th:field="*{category}" th:errorclass="bg-danger" class="browser-default custom-select" id="category" name="category">
-                        <option value="">Select category</option>
-                        <option th:each="c : ${T(com.example.dorne.model.entity.enums.CategoryNameEnum).values()}"
-                                th:text="${c}" th:value="${c}">Category</option>
-                    </select>
-
-                    <small th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger">Category error message</small>
-                </div>
-
                 <div class="button-holder d-flex justify-content-center">
-                    <button type="submit" class="btn btn-warning  mb-3" value="Register">Add Listing</button>
+                    <button type="submit" class="btn btn-warning  mb-3" value="Register">Add Event</button>
                 </div>
 
             </form>

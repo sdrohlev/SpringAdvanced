@@ -1,4 +1,3 @@
-INSERT INTO user_roles('id', 'role')
+INSERT INTO destinations('image_url', 'name')
 VALUES
-    (1, 'ADMIN'),
-    (2, 'USER');
+    ('https://kongres-magazine.eu/wp-content/uploads/2020/03/varna-bulgaria_1054165976-1.jpg?x36696', 'Varna, Bulgaria');

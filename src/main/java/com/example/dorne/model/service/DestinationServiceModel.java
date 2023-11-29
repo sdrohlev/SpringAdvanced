@@ -1,32 +1,20 @@
-package com.example.dorne.model.entity;
+package com.example.dorne.model.service;
 
+import com.example.dorne.model.entity.Event;
+import com.example.dorne.model.entity.Listing;
 
-import jakarta.persistence.*;
-
-import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Table
-@Entity(name = "destinations")
-public class Destination extends BaseEntity {
+public class DestinationServiceModel {
 
     private String name;
     private String imageUrl;
     private Set<Listing> listingsByDest;
     private Set<Event> eventsByDest;
 
-
-
-    public Destination() {
+    public DestinationServiceModel() {
     }
 
-    public Destination(String name, String imageUrl) {
-        this.name = name;
-        this.imageUrl = imageUrl;
-        this.listingsByDest = new LinkedHashSet<>();
-    }
-
-    @Column(nullable = false, unique = true)
     public String getName() {
         return name;
     }
@@ -35,7 +23,6 @@ public class Destination extends BaseEntity {
         this.name = name;
     }
 
-    @Column(nullable = false)
     public String getImageUrl() {
         return imageUrl;
     }
@@ -44,7 +31,6 @@ public class Destination extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
     public Set<Listing> getListingsByDest() {
         return listingsByDest;
     }
@@ -53,7 +39,6 @@ public class Destination extends BaseEntity {
         this.listingsByDest = listingsByDest;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
     public Set<Event> getEventsByDest() {
         return eventsByDest;
     }
@@ -61,6 +46,4 @@ public class Destination extends BaseEntity {
     public void setEventsByDest(Set<Event> eventsByDest) {
         this.eventsByDest = eventsByDest;
     }
-
-
 }

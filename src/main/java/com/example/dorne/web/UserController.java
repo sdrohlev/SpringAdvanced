@@ -2,6 +2,7 @@ package com.example.dorne.web;
 
 
 import com.example.dorne.model.binding.UserRegisterBindingModel;
+import com.example.dorne.model.binding.UserRoleBindingModel;
 import com.example.dorne.model.service.UserServiceModel;
 import com.example.dorne.service.UserService;
 import jakarta.validation.Valid;
@@ -71,6 +72,39 @@ public class UserController {
         userService.register(modelMapper.map(userRegisterBindingModel, UserServiceModel.class));
 
         return "redirect:login";
+    }
+
+    @GetMapping("/change-roles")
+    public String changeRoles(Model model) {
+
+        if (!model.containsAttribute("userRoleBindingModel")) {
+            model.addAttribute("userRoleBindingModel", new UserRoleBindingModel());
+            model.addAttribute("users", this.userService.findAllUsers());
+        }
+
+        return "change-roles";
+    }
+
+    @PostMapping("/change-roles")
+    public String changeRolesConfirm(@Valid UserRoleBindingModel userRoleBindingModel,
+                                     BindingResult bindingResult,
+                                     RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userRoleBindingModel", userRoleBindingModel);
+            redirectAttributes.addFlashAttribute("users", this.userService.findAllUsers());
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRoleBindingModel", bindingResult);
+
+            return "redirect:change-roles";
+        }
+
+        if (this.userService.isUserRoleEqual(userRoleBindingModel.getEmail(), userRoleBindingModel.getNewRole())) {
+            redirectAttributes.addFlashAttribute("equalRoles", true);
+            return "redirect:change-roles";
+        }
+
+        this.userService.changeUserRole(userRoleBindingModel.getEmail(),userRoleBindingModel.getNewRole());
+        return "redirect:/";
     }
 
 }

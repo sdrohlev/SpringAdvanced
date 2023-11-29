@@ -7,21 +7,21 @@
 <header class="header_area" id="header">
     <div class="container-fluid h-100">
         <div class="row h-100">
-            <form class="col-12 h-100">
+            <div class="col-12 h-100">
                 <nav class="h-100 navbar navbar-expand-lg">
                     <a class="navbar-brand" href="/"><img src="/images/core-img/logo.png" alt></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
 
-                    <form class="collapse navbar-collapse" id="dorneNav">
+                    <div class="collapse navbar-collapse" id="dorneNav">
                         <ul class="navbar-nav mr-auto" id="dorneMenu">
                             <li class="nav-item active">
                                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/destinations">Destinations</a>
+                                <a class="nav-link" href="/destinations/all">Destinations</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/events">Events</a>
+                                <a class="nav-link" href="/events/all">Events</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact</a>
@@ -38,14 +38,20 @@
                             </a>
                         </div>
 
-                        <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
-                            <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Admin
-                            </a>
-                            <div class="dorne-signin-btn" >
-                                <a class="dropdown-item" href="/events">Add Event</a>
-                                <a class="dropdown-item" href="/">Change user roles</a>
+                        <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/listings/mylistings">My Listings</a>
+                                <a class="dropdown-item" href="/listings/add">Add New Listing</a>
+                            </div>
+                        </li>
+
+                        <li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/destinations/add">Add Destination</a>
+                                <a class="dropdown-item" href="/events/add">Add Event</a>
+                                <a class="dropdown-item" href="/users/change-roles">Change user roles</a>
                             </div>
                         </li>
 
@@ -60,13 +66,9 @@
                         <div class="dorne-signin-btn" sec:authorize="isAuthenticated()">
                             <a href="/users/logout">Logout</a>
                         </div>
-
-                        <div class="dorne-signin-btn" sec:authorize="isAuthenticated()">
-                            <a href="/listings/add"><i class="fa fa-plus" aria-hidden="true"></i> Add listings</a>
-                        </div>
-                    </form>
+                    </div>
                 </nav>
-            </form>
+            </div>
             </div>
         </div>
     </div>

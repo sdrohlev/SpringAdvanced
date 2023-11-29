@@ -12,195 +12,61 @@
 
 <header th:replace="~{fragment/header}"></header>
 
-<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(/images/bg-img/hero-1.jpg)"></div>
+<!--<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(/images/bg-img/hero-1.jpg)"></div>-->
 
-<section class="dorne-listing-destinations-area section-padding-100-50">
+<section class="dorne-features-events-area bg-img bg-overlay-9 section-padding-100-50" style="background-image: url(/images/bg-img/hero-3.jpg)">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="section-heading dark text-center">
+                <div class="section-heading text-center">
                     <span></span>
                     <h4>ALL EVENTS</h4>
-                    <p>Editor’s pick</p>
+                    <p>------</p>
                 </div>
             </div>
         </div>
         <div class="row">
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-features-area mb-50">
-                    <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/feature-1.jpg" alt>
-
-                    <div class="price-start">
-                        <p>FROM $59/night</p>
-                    </div>
-                    <div class="feature-content d-flex align-items-center justify-content-between">
-                        <div class="feature-title">
-                            <h5>Ibiza</h5>
-                            <p>Party</p>
-                        </div>
-                        <div class="feature-favourite">
-                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            <div th:each="e : ${events}" th:object="${e}"class="col-12 col-lg-6">
+                <div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+                    <div class="feature-events-thumb">
+                        <img th:src="*{imgUrl}" alt>
+                        <div class="date-map-area d-flex">
+                            <a href="#"><span th:text="*{#temporals.format(dayAndTime, 'dd/MM HH:mm')}">Date And Time</span></a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-features-area mb-50">
-                    <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/feature-1.jpg" alt>
-
-                    <div class="price-start">
-                        <p>FROM $59/night</p>
+                    <div class="feature-events-content">
+                        <h5><span th:text="*{name}">Name</span></h5>
+                        <h6><span th:text="*{destination.name}">Destination</span></h6>
+                        <p><span th:text="*{description}">Description</span></p>
                     </div>
-                    <div class="feature-content d-flex align-items-center justify-content-between">
-                        <div class="feature-title">
-                            <h5>Paris</h5>
-                            <p>Luxury</p>
-                        </div>
-                        <div class="feature-favourite">
-                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
+                    <div class="feature-events-details-btn">
+                        <a href="#"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-features-area mb-50">
-                    <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/feature-1.jpg" alt>
-
-                    <div class="price-start">
-                        <p>FROM $59/night</p>
-                    </div>
-                    <div class="feature-content d-flex align-items-center justify-content-between">
-                        <div class="feature-title">
-                            <h5>Lake Como</h5>
-                            <p>Spectacular</p>
-                        </div>
-                        <div class="feature-favourite">
-                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            <div class="col-12 col-lg-6">
+                <div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
+                    <div class="feature-events-thumb">
+                        <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/event-1.jpg.webp" alt>
+                        <div class="date-map-area d-flex">
+                            <a href="#">26 Nov</a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-features-area mb-50">
-                    <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/feature-1.jpg" alt>
-
-                    <div class="price-start">
-                        <p>FROM $59/night</p>
+                    <div class="feature-events-content">
+                        <h5>Jazz Concert</h5>
+                        <h6>Manhathan</h6>
+                        <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra...</p>
                     </div>
-                    <div class="feature-content d-flex align-items-center justify-content-between">
-                        <div class="feature-title">
-                            <h5>Greece</h5>
-                            <p>Sunny</p>
-                        </div>
-                        <div class="feature-favourite">
-                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
+                    <div class="feature-events-details-btn">
+                        <a href="#">+</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-features-area mb-50">
-                    <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/feature-1.jpg" alt>
-
-                    <div class="price-start">
-                        <p>FROM $59/night</p>
-                    </div>
-                    <div class="feature-content d-flex align-items-center justify-content-between">
-                        <div class="feature-title">
-                            <h5>Norway</h5>
-                            <p>All Year round</p>
-                        </div>
-                        <div class="feature-favourite">
-                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-features-area mb-50">
-                    <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/feature-1.jpg" alt>
-
-                    <div class="price-start">
-                        <p>FROM $59/night</p>
-                    </div>
-                    <div class="feature-content d-flex align-items-center justify-content-between">
-                        <div class="feature-title">
-                            <h5>Ibiza</h5>
-                            <p>Party</p>
-                        </div>
-                        <div class="feature-favourite">
-                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-features-area mb-50">
-                    <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/feature-1.jpg" alt>
-
-                    <div class="price-start">
-                        <p>FROM $59/night</p>
-                    </div>
-                    <div class="feature-content d-flex align-items-center justify-content-between">
-                        <div class="feature-title">
-                            <h5>Paris</h5>
-                            <p>Luxury</p>
-                        </div>
-                        <div class="feature-favourite">
-                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-features-area mb-50">
-                    <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/feature-1.jpg" alt>
-
-                    <div class="price-start">
-                        <p>FROM $59/night</p>
-                    </div>
-                    <div class="feature-content d-flex align-items-center justify-content-between">
-                        <div class="feature-title">
-                            <h5>Lake Como</h5>
-                            <p>Spectacular</p>
-                        </div>
-                        <div class="feature-favourite">
-                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-features-area mb-50">
-                    <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/feature-1.jpg" alt>
-
-                    <div class="price-start">
-                        <p>FROM $59/night</p>
-                    </div>
-                    <div class="feature-content d-flex align-items-center justify-content-between">
-                        <div class="feature-title">
-                            <h5>Greece</h5>
-                            <p>Sunny</p>
-                        </div>
-                        <div class="feature-favourite">
-                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
-
 
 
 <footer th:replace="~{fragment/footer}"></footer>

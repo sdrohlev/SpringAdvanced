@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragment/head}"></head>
+<body>
+
+<header th:replace="~{fragment/header}"></header>
+
+<section class="dorne-welcome-area bg-img bg-overlay" style="background-image: url(/images/bg-img/hero-1.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+
+            <form class="mx-auto w-25 bg-blur rounded" th:object="${destinationAddBindingModel}" th:method="post" th:action="@{/destinations/add}">
+
+                <div th:if="${destinationExist}" class="text-danger">This destination already exists!</div>
+                <div class="form-group">
+                    <div class="label-holder textCol d-flex justify-content-center">
+                        <label for="name" class="h4 mb-2 text-white">Destination</label>
+                    </div>
+                    <input th:field="*{name}" th:errorclass="bg-danger" type="text" class="form-control" id="name" name="name"/>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Destination error message</small>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-holder textCol d-flex justify-content-center">
+                        <label for="name" class="h4 mb-2 text-white">Destination Image</label>
+                    </div>
+                    <input th:field="*{imageUrl}" th:errorclass="bg-danger" type="text" class="form-control" id="imageUrl" name="imageUrl"/>
+                    <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="text-danger">Destination Image error message</small>
+                </div>
+
+                <div class="button-holder d-flex justify-content-center">
+                    <button type="submit" class="btn btn-warning  mb-3" value="Register">Add Destination</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+
+    <div class="hero-social-btn">
+        <div class="social-title d-flex align-items-center">
+            <h6>Follow us on Social Media</h6>
+            <span></span>
+        </div>
+        <div class="social-btns">
+            <a href="https://www.linkedin.com/"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+            <a href="https://www.twitter.com/"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+            <a href="https://www.fa-facebook.com/"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+        </div>
+    </div>
+
+</section>
+
+<footer th:replace="~{fragment/footer}"></footer>
+
+</body>
+</html>

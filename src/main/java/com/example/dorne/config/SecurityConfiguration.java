@@ -30,9 +30,8 @@ public class SecurityConfiguration {
         httpSecurity.authorizeHttpRequests(
                 authorizeRequests -> authorizeRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error","/listings/hotels",
-                                "/destinations","/events").permitAll()
-                        .requestMatchers("/events").hasRole(UserRoleEnum.ADMIN.name())
+                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll()
+                        .requestMatchers("/destinations/add", "/event/add", "/users/change-roles").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
 
         ).formLogin(

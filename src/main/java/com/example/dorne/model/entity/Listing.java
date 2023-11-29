@@ -10,8 +10,10 @@ public class Listing extends BaseEntity{
     private double rating;
     private double price;
     private String imgUrl;
+    private String review;
     private Destination destination;
     private Category category;
+    private UserEntity user;
 
     public Listing() {
     }
@@ -61,6 +63,15 @@ public class Listing extends BaseEntity{
         this.imgUrl = imgUrl;
     }
 
+    @Column(columnDefinition = "TEXT")
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
     @ManyToOne
     public Category getCategory() {
         return category;
@@ -68,5 +79,14 @@ public class Listing extends BaseEntity{
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }

@@ -21,7 +21,7 @@
         <div class="section-heading dark text-center">
           <span></span>
           <h4>ALL DESTINATIONS</h4>
-          <p>-----</p>
+          <span></span>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
               <h5><span th:text="*{name}">Name</span></h5>
             </div>
             <div class="feature-favourite">
-              <a href="#"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></i></a>
+              <a th:href="@{/listings/destination/{id}(id = ${d.id})}"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></i></a>
             </div>
           </div>
         </div>

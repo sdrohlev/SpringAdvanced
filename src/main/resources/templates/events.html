@@ -18,15 +18,16 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="section-heading text-center">
+                <div style="padding-top: 100px" class="section-heading text-center">
                     <span></span>
                     <h4>ALL EVENTS</h4>
-                    <p>------</p>
+                    <button type="submit" class="btn dorne-btn" id="show-events">SHOW</button>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div th:each="e : ${events}" th:object="${e}"class="col-12 col-lg-6">
+
+        <div class="row" id="row">
+            <!--<div th:each="e : ${events}" th:object="${e}" class="col-12 col-lg-6">
                 <div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
                     <div class="feature-events-thumb">
                         <img th:src="*{imgUrl}" alt>
@@ -43,9 +44,9 @@
                         <a href="#"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="col-12 col-lg-6">
+            <!--<div class="col-12 col-lg-6">
                 <div class="single-feature-events-area d-sm-flex align-items-center wow fadeInUpBig" data-wow-delay="0.2s">
                     <div class="feature-events-thumb">
                         <img src="https://preview.colorlib.com/theme/dorne/img/bg-img/event-1.jpg.webp" alt>
@@ -62,7 +63,7 @@
                         <a href="#">+</a>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
         </div>
     </div>
@@ -70,6 +71,7 @@
 
 
 <footer th:replace="~{fragment/footer}"></footer>
+<script src="/js/other/events.js"></script>
 
 </body>
 </html>

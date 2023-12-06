@@ -3,10 +3,14 @@ package com.example.dorne.web;
 
 import com.example.dorne.model.binding.UserRegisterBindingModel;
 import com.example.dorne.model.binding.UserRoleBindingModel;
+import com.example.dorne.model.binding.UsernameChangeBindingModel;
+import com.example.dorne.model.entity.UserEntity;
 import com.example.dorne.model.service.UserServiceModel;
 import com.example.dorne.service.UserService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -103,7 +107,45 @@ public class UserController {
             return "redirect:change-roles";
         }
 
-        this.userService.changeUserRole(userRoleBindingModel.getEmail(),userRoleBindingModel.getNewRole());
+        this.userService.changeUserRole(userRoleBindingModel.getEmail(), userRoleBindingModel.getNewRole());
+        return "redirect:/";
+    }
+
+    @GetMapping("/change-username")
+    public String changeUsername (Model model) {
+        if (!model.containsAttribute("usernameChangeBindingModel")) {
+            model.addAttribute("usernameChangeBindingModel", new UsernameChangeBindingModel());
+        }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String authUserEmail = authentication.getName();
+        UserEntity authUser = this.userService.findByEmailAuth(authUserEmail);
+        model.addAttribute("authUser", authUser);
+
+        return "change-username";
+    }
+
+
+    @PostMapping("/change-username")
+    public String changeUsernameConfirm(@Valid UsernameChangeBindingModel usernameChangeBindingModel,
+                                        BindingResult bindingResult,
+                                        RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("usernameChangeBindingModel", usernameChangeBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.usernameChangeBindingModel", bindingResult);
+
+            return "redirect:change-username";
+        }
+
+        if (this.userService.usernameExists(usernameChangeBindingModel.getUsername())) {
+            redirectAttributes.addFlashAttribute("usernameExists", true);
+            return "redirect:change-username";
+        }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String authUserEmail = authentication.getName();
+        this.userService.changeUsername(authUserEmail, usernameChangeBindingModel.getUsername());
         return "redirect:/";
     }
 

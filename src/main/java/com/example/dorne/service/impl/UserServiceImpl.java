@@ -62,6 +62,18 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(userEntity);
     }
 
+    @Override
+    public boolean usernameExists(String username) {
+        return this.userRepository.findByUsername(username).isPresent();
+    }
+
+    @Override
+    public void changeUsername(String email, String username) {
+        UserEntity userEntity = this.userRepository.findByEmail(email).orElse(null);
+        userEntity.setUsername(username);
+        this.userRepository.save(userEntity);
+    }
+
     private UserEntity map(UserServiceModel userServiceModel) {
 
         if (userRepository.count() == 0) {

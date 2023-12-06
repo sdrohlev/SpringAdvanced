@@ -15,5 +15,7 @@ public interface ListingRepository extends JpaRepository<Listing, String> {
     Optional<Listing> findByName(String listingName);
     List<Listing> findAllByCategoryName (CategoryNameEnum categoryNameEnum);
     List<Listing> findListingByUserId(String userId);
+    List<Listing> findListingByDestinationId(String id);
+    List<Listing> findAllByDestinationNameAndCategoryName(String destination, CategoryNameEnum categoryNameEnum);
 
 }

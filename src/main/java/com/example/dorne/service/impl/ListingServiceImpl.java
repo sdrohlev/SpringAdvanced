@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ListingServiceImpl implements ListingService {
@@ -73,5 +74,26 @@ public class ListingServiceImpl implements ListingService {
         return this.listingRepository.findListingByUserId(userId);
     }
 
+    @Override
+    public void addReviewToListing(String id, String review) {
+        Listing listing = this.listingRepository.findById(id).orElse(null);
+        listing.setReview(review);
+        this.listingRepository.save(listing);
+    }
+
+    @Override
+    public void removeListing(String id) {
+        this.listingRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Listing> findByDestination(String id) {
+        return this.listingRepository.findListingByDestinationId(id);
+    }
+
+    @Override
+    public List<Listing> findAllByDestinationAndCategory(String destination, String category) {
+        return this.listingRepository.findAllByDestinationNameAndCategoryName(destination, CategoryNameEnum.valueOf(category));
+    }
 
 }

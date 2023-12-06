@@ -14,8 +14,10 @@ public interface DestinationService {
     Destination findByName(String destination);
 
     void addListingToDestination(Listing listing, String destinationName);
+
     List<Destination> findAll();
 
     boolean isContains(DestinationServiceModel destinationServiceModel);
 
+    Destination findById(String id);
 }

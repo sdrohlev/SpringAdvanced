@@ -17,4 +17,12 @@ public interface ListingService {
     Listing findById(String id);
 
     List<Listing> findByUserId(String userId);
+
+    void addReviewToListing(String id, String review);
+
+    void removeListing(String id);
+
+    List<Listing> findByDestination(String id);
+
+    List<Listing> findAllByDestinationAndCategory(String destination, String category);
 }

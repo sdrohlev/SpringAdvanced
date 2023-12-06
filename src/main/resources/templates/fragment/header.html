@@ -20,30 +20,52 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/destinations/all">Destinations</a>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings</a>
+                                <div sec:authorize="isAuthenticated()" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/listings/hotels">Hotels</a>
+                                    <a class="dropdown-item" href="/listings/restaurants">Restaurants</a>
+                                    <a class="dropdown-item" href="/listings/shopping">Shopping</a>
+                                    <a class="dropdown-item" href="/listings/fitness">Fitness</a>
+                                    <a class="dropdown-item" href="/listings/cinemas">Cinemas</a>
+                                </div>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/events/all">Events</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
                         </ul>
 
-                        <div class="dorne-signin-btn">
+                        <!--<div class="dorne-signin-btn">
                             <a class="dorne-signin-btn" style="color: white" sec:authorize="isAuthenticated()">
                                 Welcome,
                                 <th:block class="nav-link" sec:authentication="name"></th:block>
+                                <a class="fa fa-ellipsis-v" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/listings/mylistings">Change username</a>
+                                </div>
+                                </a>
                             </a>
                             <a class="dorne-signin-btn" style="color: white" sec:authorize="!isAuthenticated()">
                                 Welcome, Anonymous!
                             </a>
-                        </div>
+                        </div>-->
 
                         <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings</a>
+                            <a class="nav-link dropdown-toggle" style="color: white" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Welcome,
+                                <th:block class="nav-link" sec:authentication="name"></th:block>
+                            </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/listings/mylistings">My Listings</a>
                                 <a class="dropdown-item" href="/listings/add">Add New Listing</a>
+                                <a class="dropdown-item" href="/users/change-username">Change username</a>
                             </div>
+                        </li>
+
+                        <li sec:authorize="!isAuthenticated()" class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: white">
+                                Welcome, Anonymous!
+                            </a>
                         </li>
 
                         <li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
@@ -82,7 +104,7 @@
                     <i class="pe-7s-close-circle" aria-hidden="true"></i>
                 </div>
                 <form action="#" method="get">
-                    <input type="search" name="caviarSearch" id="search" placeholder="Search Your Desire Destinations or Events">
+                    <input type="search" name="caviarSearch" id="search" placeholder="Enter your new username here...">
                     <input type="submit" class="d-none" value="submit">
                 </form>
             </div>

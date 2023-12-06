@@ -14,20 +14,20 @@
 
 <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(/images/bg-img/hero-3.jpg)"></div>
 
-<section class="dorne-listing-destinations-area section-padding-100-50">
+<section th:object="${listingsByDest}" class="dorne-listing-destinations-area section-padding-100-50">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-heading dark text-center">
                     <span></span>
-                    <h4>ALL RESTAURANTS</h4>
+                    <h4 th:text="|ALL LISTINGS IN ${destination.name}|"></h4>
                     <span></span>
                 </div>
             </div>
         </div>
         <div class="row">
 
-            <div th:each="r : ${restaurants}" th:object="${r}" class="col-12 col-sm-6 col-lg-4">
+            <div th:each="l : ${listingsByDest}" th:object="${l}" class="col-12 col-sm-6 col-lg-4">
                 <div class="single-features-area mb-50">
                     <img th:src="*{imgUrl}" alt>
 

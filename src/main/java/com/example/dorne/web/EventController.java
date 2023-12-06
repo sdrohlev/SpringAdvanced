@@ -2,18 +2,19 @@ package com.example.dorne.web;
 
 import com.example.dorne.model.binding.EventAddBindingModel;
 import com.example.dorne.model.service.EventServiceModel;
+import com.example.dorne.model.service.EventServiceModelAPI;
 import com.example.dorne.service.DestinationService;
 import com.example.dorne.service.EventService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/events")
@@ -29,12 +30,31 @@ public class EventController {
         this.modelMapper = modelMapper;
     }
 
+
     @GetMapping("/all")
     public String allEvents(Model model) {
 
-        model.addAttribute("events", this.eventService.findAll());
+        //model.addAttribute("events", this.eventService.findAll());
 
         return "events";
+    }
+    @ResponseBody
+    @GetMapping("/api/all")
+    public ResponseEntity<List<EventServiceModelAPI>> getAllEvents(Model model) {
+
+        //model.addAttribute("events", this.eventService.findAll());
+
+        return ResponseEntity.ok(eventService.getAllEvents());
+    }
+
+    @ResponseBody
+    @GetMapping("/api/{id}")
+    public ResponseEntity<EventServiceModel> findEventById (@PathVariable("id") String id) {
+
+        EventServiceModel eventServiceModel = eventService.findEventById(id);
+        return eventServiceModel != null
+                ? ResponseEntity.ok(eventServiceModel)
+                : ResponseEntity.notFound().build();
     }
 
     @GetMapping("/add")

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragment/head}"></head>
 <body>
 
@@ -25,13 +25,37 @@
 
                     <div class="nav nav-tabs" id="heroTab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab" aria-controls="nav-places" aria-selected="true">Places</a>
-                        <a class="nav-item nav-link" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Events</a>
+                        <!--<a class="nav-item nav-link" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Events</a>-->
                     </div>
 
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
+                        <div th:object="${searchDestinationBindingModel}" class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
                             <h6>What are you looking for?</h6>
-                            <form action="#" method="get">
+                            <h6 sec:authorize="!isAuthenticated()">
+                                <a class="nav-link" style="display:inline" href="/users/login">LOGIN</a> or <a class="nav-link" style="display:inline" href="/users/register">REGISTER</a> to FIND IT!
+                            </h6>
+                            <small th:if="${#fields.hasErrors('destination')}" th:errors="*{destination}" class="text-danger">Destination error message</small><br>
+                            <small th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger">Category error message</small>
+                            <form th:object="${searchDestinationBindingModel}" sec:authorize="isAuthenticated()" th:action="@{/listings/search}" th:method="post">
+                                <select th:field="*{destination}" class="custom-select" id="destination" name="destination">
+                                    <option value="">Select Destination</option>
+                                    <option th:each="d : ${destinations}"
+                                            th:text="${d.name}" th:value="${d.name}">Destination</option>
+                                </select>
+                                <select th:field="*{category}" class="custom-select" id="category" name="category">
+                                    <option value="">Select Category</option>
+                                    <option th:each="c : ${T(com.example.dorne.model.entity.enums.CategoryNameEnum).values()}"
+                                            th:text="${c}" th:value="${c}">Category</option>
+                                </select>
+                                <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
+                            </form>
+                        </div>
+                        <!--<div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+                            <h6>What are you looking for?</h6>
+                            <h6 sec:authorize="!isAuthenticated()">
+                                <a class="nav-link" style="display:inline" href="/users/login">LOGIN</a> or <a class="nav-link" style="display:inline" href="/users/register">REGISTER</a> to FIND IT!
+                            </h6>
+                            <form sec:authorize="isAuthenticated()" action="#" method="get">
                                 <select class="custom-select">
                                     <option selected>Your Destinations</option>
                                     <option value="1">New York</option>
@@ -54,33 +78,7 @@
                                 </select>
                                 <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
                             </form>
-                        </div>
-                        <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
-                            <h6>What are you looking for?</h6>
-                            <form action="#" method="get">
-                                <select class="custom-select">
-                                    <option selected>Your Destinations</option>
-                                    <option value="1">New York</option>
-                                    <option value="2">Latvia</option>
-                                    <option value="3">Dhaka</option>
-                                    <option value="4">Melbourne</option>
-                                    <option value="5">London</option>
-                                </select>
-                                <select class="custom-select">
-                                    <option selected>All Catagories</option>
-                                    <option value="1">Catagories 1</option>
-                                    <option value="2">Catagories 2</option>
-                                    <option value="3">Catagories 3</option>
-                                </select>
-                                <select class="custom-select">
-                                    <option selected>Price Range</option>
-                                    <option value="1">$100 - $499</option>
-                                    <option value="2">$500 - $999</option>
-                                    <option value="3">$1000 - $4999</option>
-                                </select>
-                                <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
-                            </form>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

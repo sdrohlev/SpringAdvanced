@@ -46,4 +46,9 @@ public class DestinationServiceImpl implements DestinationService {
     public boolean isContains(DestinationServiceModel destinationServiceModel) {
         return this.destinationRepository.findByName(destinationServiceModel.getName()).isPresent();
     }
+
+    @Override
+    public Destination findById(String id) {
+        return this.destinationRepository.findById(id).orElse(null);
+    }
 }

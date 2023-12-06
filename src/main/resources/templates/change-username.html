@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragment/head}"></head>
+<body>
+
+
+<div id="preloader">
+    <div class="dorne-load"></div>
+</div>
+
+
+<header th:replace="~{fragment/header}"></header>
+
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(/images/bg-img/hero-3.jpg)"></div>
+
+<section class="dorne-listing-destinations-area section-padding-100-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading dark text-center">
+                    <span></span>
+                    <h4>USER PANEL</h4>
+                    <p>Change username</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-search-form">
+
+            <div class="tab-content" id="nav-tabContent">
+                <div th:object="${usernameChangeBindingModel}" class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
+                    <h6><span th:text="|Your current username is ${authUser.username}|">Username</span></h6>
+                    <div th:if="${usernameExists}" class="text-danger">There is а user with that username!</div>
+                    <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger">Username error message</small><br>
+
+                    <form th:object="${usernameChangeBindingModel}"
+                          th:action="@{/users/change-username}" th:method="POST">
+                            <input type="text" name="username" class="form-control" placeholder="Enter your new username here!">
+                            <button type="submit" class="btn dorne-btn">Change username</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<footer th:replace="~{fragment/footer}"></footer>
+
+</body>
+</html>

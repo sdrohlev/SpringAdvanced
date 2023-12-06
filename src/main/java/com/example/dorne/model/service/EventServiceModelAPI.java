@@ -1,14 +1,13 @@
-package com.example.dorne.model.entity;
+package com.example.dorne.model.service;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.FutureOrPresent;
+import com.example.dorne.model.entity.Destination;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "events")
-public class Event extends BaseEntity {
+public class EventServiceModelAPI {
 
     private String name;
     private String description;
@@ -16,10 +15,9 @@ public class Event extends BaseEntity {
     private String imgUrl;
     private Destination destination;
 
-    public Event() {
+    public EventServiceModelAPI() {
     }
 
-    @Column(nullable = false, unique = true)
     public String getName() {
         return name;
     }
@@ -28,7 +26,6 @@ public class Event extends BaseEntity {
         this.name = name;
     }
 
-    @Column(nullable = false, columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }
@@ -37,9 +34,7 @@ public class Event extends BaseEntity {
         this.description = description;
     }
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @FutureOrPresent
-    @Column(nullable = false)
+    @JsonFormat(pattern="dd/MM HH:mm")
     public LocalDateTime getDayAndTime() {
         return dayAndTime;
     }
@@ -48,8 +43,14 @@ public class Event extends BaseEntity {
         this.dayAndTime = dayAndTime;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "destination_id", nullable = false)
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     public Destination getDestination() {
         return destination;
     }
@@ -58,12 +59,4 @@ public class Event extends BaseEntity {
         this.destination = destination;
     }
 
-    @Column(nullable = false)
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
 }

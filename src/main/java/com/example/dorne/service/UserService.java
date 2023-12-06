@@ -17,5 +17,9 @@ public interface UserService {
     boolean isUserRoleEqual(String email, String newRole);
 
     void changeUserRole(String email, String newRole);
+
+    boolean usernameExists(String username);
+
+    void changeUsername(String email, String username);
 }
 

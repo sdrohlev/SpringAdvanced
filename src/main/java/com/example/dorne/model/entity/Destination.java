@@ -31,8 +31,9 @@ public class Destination extends BaseEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public Destination setName(String name) {
         this.name = name;
+        return this;
     }
 
     @Column(nullable = false)
@@ -40,8 +41,9 @@ public class Destination extends BaseEntity {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public Destination setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
     }
 
     @OneToMany(fetch = FetchType.EAGER)

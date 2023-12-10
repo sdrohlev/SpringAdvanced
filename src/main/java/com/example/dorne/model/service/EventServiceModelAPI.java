@@ -22,16 +22,18 @@ public class EventServiceModelAPI {
         return name;
     }
 
-    public void setName(String name) {
+    public EventServiceModelAPI setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public EventServiceModelAPI setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     @JsonFormat(pattern="dd/MM HH:mm")
@@ -39,24 +41,27 @@ public class EventServiceModelAPI {
         return dayAndTime;
     }
 
-    public void setDayAndTime(LocalDateTime dayAndTime) {
+    public EventServiceModelAPI setDayAndTime(LocalDateTime dayAndTime) {
         this.dayAndTime = dayAndTime;
+        return this;
     }
 
     public String getImgUrl() {
         return imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public EventServiceModelAPI setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+        return this;
     }
 
     public Destination getDestination() {
         return destination;
     }
 
-    public void setDestination(Destination destination) {
+    public EventServiceModelAPI setDestination(Destination destination) {
         this.destination = destination;
+        return this;
     }
 
 }

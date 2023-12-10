@@ -24,8 +24,9 @@ public class Event extends BaseEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public Event setName(String name) {
         this.name = name;
+        return this;
     }
 
     @Column(nullable = false, columnDefinition = "TEXT")
@@ -33,8 +34,9 @@ public class Event extends BaseEntity {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Event setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -44,8 +46,9 @@ public class Event extends BaseEntity {
         return dayAndTime;
     }
 
-    public void setDayAndTime(LocalDateTime dayAndTime) {
+    public Event setDayAndTime(LocalDateTime dayAndTime) {
         this.dayAndTime = dayAndTime;
+        return this;
     }
 
     @ManyToOne
@@ -54,8 +57,9 @@ public class Event extends BaseEntity {
         return destination;
     }
 
-    public void setDestination(Destination destination) {
+    public Event setDestination(Destination destination) {
         this.destination = destination;
+        return this;
     }
 
     @Column(nullable = false)
@@ -63,7 +67,8 @@ public class Event extends BaseEntity {
         return imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public Event setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+        return this;
     }
 }

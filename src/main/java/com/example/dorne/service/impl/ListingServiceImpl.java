@@ -23,11 +23,11 @@ import java.util.Optional;
 @Service
 public class ListingServiceImpl implements ListingService {
 
-    private final ModelMapper modelMapper;
-    private final CategoryService categoryService;
-    private final DestinationService destinationService;
-    private final UserService userService;
-    private final ListingRepository listingRepository;
+    private ModelMapper modelMapper;
+    private CategoryService categoryService;
+    private DestinationService destinationService;
+    private UserService userService;
+    private ListingRepository listingRepository;
 
     public ListingServiceImpl(ModelMapper modelMapper,
                               CategoryService categoryService,

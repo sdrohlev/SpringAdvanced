@@ -109,6 +109,7 @@ public class ListingController {
         }
 
         if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("destinations", this.destinationService.findAll());
             redirectAttributes.addFlashAttribute("listingAddBindingModel", listingAddBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.listingAddBindingModel", bindingResult);
 

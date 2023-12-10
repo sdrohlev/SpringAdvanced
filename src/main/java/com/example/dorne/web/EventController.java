@@ -78,6 +78,7 @@ public class EventController {
         }
 
         if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("destinations", this.destinationService.findAll());
             redirectAttributes.addFlashAttribute("eventAddBindingModel", eventAddBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.eventAddBindingModel", bindingResult);
 

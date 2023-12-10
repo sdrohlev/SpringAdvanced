@@ -19,8 +19,9 @@ public class UserRegisterBindingModel {
         return username;
     }
 
-    public void setUsername(String username) {
+    public UserRegisterBindingModel setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     @Size(min = 3, max = 20, message = "Password length must be between 3 and 20 characters")
@@ -28,8 +29,9 @@ public class UserRegisterBindingModel {
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserRegisterBindingModel setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     @NotBlank(message = "Email cannot be empty")
@@ -38,8 +40,9 @@ public class UserRegisterBindingModel {
         return email;
     }
 
-    public void setEmail(String email) {
+    public UserRegisterBindingModel setEmail(String email) {
         this.email = email;
+        return this;
     }
 
 
@@ -48,7 +51,8 @@ public class UserRegisterBindingModel {
         return confirmPassword;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
+    public UserRegisterBindingModel setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+        return this;
     }
 }

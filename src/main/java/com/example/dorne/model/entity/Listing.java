@@ -23,8 +23,9 @@ public class Listing extends BaseEntity{
         return name;
     }
 
-    public void setName(String name) {
+    public Listing setName(String name) {
         this.name = name;
+        return this;
     }
 
     @Column(nullable = false)
@@ -32,8 +33,9 @@ public class Listing extends BaseEntity{
         return rating;
     }
 
-    public void setRating(double rating) {
+    public Listing setRating(double rating) {
         this.rating = rating;
+        return this;
     }
 
     public double getPrice() {
@@ -50,8 +52,9 @@ public class Listing extends BaseEntity{
         return destination;
     }
 
-    public void setDestination(Destination destination) {
+    public Listing setDestination(Destination destination) {
         this.destination = destination;
+        return this;
     }
 
     @Column(nullable = false)
@@ -59,8 +62,9 @@ public class Listing extends BaseEntity{
         return imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public Listing setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+        return this;
     }
 
     @Column(columnDefinition = "TEXT")
@@ -68,8 +72,9 @@ public class Listing extends BaseEntity{
         return review;
     }
 
-    public void setReview(String review) {
+    public Listing setReview(String review) {
         this.review = review;
+        return this;
     }
 
     @ManyToOne
@@ -77,8 +82,9 @@ public class Listing extends BaseEntity{
         return category;
     }
 
-    public void setCategory(Category category) {
+    public Listing setCategory(Category category) {
         this.category = category;
+        return this;
     }
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -86,7 +92,8 @@ public class Listing extends BaseEntity{
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public Listing setUser(UserEntity user) {
         this.user = user;
+        return this;
     }
 }

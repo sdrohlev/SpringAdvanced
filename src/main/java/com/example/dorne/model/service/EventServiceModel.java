@@ -19,39 +19,44 @@ public class EventServiceModel {
         return name;
     }
 
-    public void setName(String name) {
+    public EventServiceModel setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public EventServiceModel setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public LocalDateTime getDayAndTime() {
         return dayAndTime;
     }
 
-    public void setDayAndTime(LocalDateTime dayAndTime) {
+    public EventServiceModel setDayAndTime(LocalDateTime dayAndTime) {
         this.dayAndTime = dayAndTime;
+        return this;
     }
 
     public String getImgUrl() {
         return imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public EventServiceModel setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+        return this;
     }
 
     public String getDestination() {
         return destination;
     }
 
-    public void setDestination(String destination) {
+    public EventServiceModel setDestination(String destination) {
         this.destination = destination;
+        return this;
     }
 }

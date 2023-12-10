@@ -19,16 +19,18 @@ public class DestinationServiceModel {
         return name;
     }
 
-    public void setName(String name) {
+    public DestinationServiceModel setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public DestinationServiceModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
     }
 
     public Set<Listing> getListingsByDest() {

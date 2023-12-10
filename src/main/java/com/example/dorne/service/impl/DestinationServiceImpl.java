@@ -5,6 +5,7 @@ import com.example.dorne.model.entity.Listing;
 import com.example.dorne.model.service.DestinationServiceModel;
 import com.example.dorne.repository.DestinationRepository;
 import com.example.dorne.service.DestinationService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 public class DestinationServiceImpl implements DestinationService {
 
     private final DestinationRepository destinationRepository;
+
 
     public DestinationServiceImpl(DestinationRepository destinationRepository) {
         this.destinationRepository = destinationRepository;

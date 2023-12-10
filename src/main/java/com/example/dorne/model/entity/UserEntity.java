@@ -35,8 +35,9 @@ public class UserEntity extends BaseEntity{
         return username;
     }
 
-    public void setUsername(String username) {
+    public UserEntity setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     @Column(name = "password", nullable = false)
@@ -44,8 +45,9 @@ public class UserEntity extends BaseEntity{
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserEntity setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     @Email
@@ -54,8 +56,9 @@ public class UserEntity extends BaseEntity{
         return email;
     }
 
-    public void setEmail(String email) {
+    public UserEntity setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     @Enumerated(value = EnumType.STRING)
@@ -63,7 +66,8 @@ public class UserEntity extends BaseEntity{
         return role;
     }
 
-    public void setRole(UserRoleEnum role) {
+    public UserEntity setRole(UserRoleEnum role) {
         this.role = role;
+        return this;
     }
 }
